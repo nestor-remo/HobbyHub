@@ -6,6 +6,7 @@ const Card = (props) => {
         <div className='Card'>
             <h1>{props.title}</h1>
             <p><strong>Fruit:</strong> {props.fruit}</p>
+            <p><strong>Description:</strong> {props.description}</p>
             <Link to={'edit/'+props.id}>Edit</Link>
         </div>
     )
