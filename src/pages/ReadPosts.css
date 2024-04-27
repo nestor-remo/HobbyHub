@@ -1,0 +1,6 @@
+.ReadPosts {
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+    margin-top: 20px;
+}

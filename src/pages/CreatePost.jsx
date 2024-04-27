@@ -2,14 +2,7 @@ import React, { useState } from 'react';
 import { supabase } from '../client';
 
 const CreatePost = () => {
-    const [post, setPost] = useState({ title: "", fruit: "", description: "" });
-    let fruits = [
-        { name: "Mera Mera", type: "Logia" },
-        { name: "Gomu Gomu", type: "Zoan" },
-        { name: "Ice Ice", type: "Logia" },
-        { name: "Yami Yami", type: "Paramecia" },
-        { name: "Mochi Mochi", type: "Logia"},
-    ];
+    const [post, setPost] = useState({ title: "", description: "" });
 
     const handleChange = (event) => {
         const { name, value } = event.target;
@@ -27,7 +20,7 @@ const CreatePost = () => {
             .from("Posts")
             .insert({
                 title: post.title,
-                fruit: post.fruit,
+                author: post.author,
                 description: post.description,
             })
             .select();
@@ -38,21 +31,12 @@ const CreatePost = () => {
     return (
         <div>
             <form>
-                <label htmlFor="title">Title</label>
-                <input type="text" id="title" name="title" onChange={handleChange}></input>
-                <br></br>
+                <input type="text" id="title" placeholder="Title" name="title" onChange={handleChange}></input> 
 
-                <label htmlFor="fruit">Fruit</label>
-                {fruits.map((fruit) => (
-                    <div key={fruit.name}>
-                        <input type="radio" id={fruit.name} name="fruit" value={fruit.name} onChange={handleChange} />
-                        <label htmlFor={fruit.name}>{fruit.name}</label>
-                    </div>
-                ))}
+                <input type="text" id="author" placeholder="Author" name="author" onChange={handleChange}></input>
                 <br></br>
-
-                <label htmlFor="description">Description</label>
-                <textarea rows="5" cols="50" id="description" name="description" onChange={handleChange}></textarea>
+                
+                <textarea rows="5" cols="50" placeholder="Description" id="description" name="description" onChange={handleChange}></textarea>
                 <br></br>
 
                 <input type="submit" value="Submit" onClick={createPost}></input>

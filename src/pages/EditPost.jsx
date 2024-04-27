@@ -5,15 +5,8 @@ import { supabase } from '../client';
 
 const EditPost = ({data}) => {
     const { id } = useParams();
-    const [post, setPost] = useState({id: null, title: "", fruit: "", description: ""});
+    const [post, setPost] = useState({id: null, title: "", description: ""});
 
-    let fruits = [
-        { name: "Mera Mera", type: "Logia" },
-        { name: "Gomu Gomu", type: "Zoan" },
-        { name: "Ice Ice", type: "Logia" },
-        { name: "Yami Yami", type: "Paramecia" },
-        { name: "Mochi Mochi", type: "Logia"},
-    ];
 
     const handleChange = (event) => {
         const { name, value } = event.target;
@@ -27,12 +20,14 @@ const EditPost = ({data}) => {
 
     const updatePost = async (event) => {
         event.preventDefault();
-        const { data, error } = await supabase
+        await supabase
             .from("Posts")
             .update({
                 title: post.title,
-                fruit: post.fruit,
                 description: post.description,
+                likes: post.likes,
+                author: post.author
+
             })
             .eq('id', id)
             window.location = "/";
@@ -50,24 +45,15 @@ const EditPost = ({data}) => {
     return (
         <div>
             <form>
-                <label htmlFor="title">Title</label>
-                <input type="text" id="title" name="title" onChange={handleChange}></input>
+                <input type="text" id="title" placeholder="Title" name="title" onChange={handleChange}></input> 
+
+                <input type="text" id="author" placeholder="Author" name="author" onChange={handleChange}></input>
                 <br></br>
 
-                <label htmlFor="fruit">Fruit</label>
-                {fruits.map((fruit) => (
-                    <div key={fruit.name}>
-                        <input type="radio" id={fruit.name} name="fruit" value={fruit.name} onChange={handleChange} />
-                        <label htmlFor={fruit.name}>{fruit.name}</label>
-                    </div>
-                ))}
+                <textarea rows="5" cols="50" placeholder="Description" id="description" name="description" onChange={handleChange}></textarea>
                 <br></br>
 
-                <label htmlFor="description">Description</label>
-                <textarea rows="5" cols="50" id="description" name="description" onChange={handleChange}></textarea>
-                <br></br>
-
-                <input type="submit" value="Submit" onClick={updatePost}></input>
+                <button className='submit-button' onClick={updatePost}>Update</button>
                 <button className='delete-button' onClick={deletePost}>Delete</button>
             </form>
         </div>

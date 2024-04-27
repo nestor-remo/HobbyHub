@@ -26,13 +26,16 @@ function App() {
 
   return (
     <div className='App'>
-      <h1> Welcome to the Straw Hat Crew! </h1>
-      <Link to='/'><button>See all Crewmates!</button> </Link>
-      <Link to='/new'><button>Add a new Crewmate!</button> </Link>
-      {element}
-
+      <div className='header'>
+          <h1> Welcome to MangaHub! </h1>
+          <div>
+            <Link to='/'><button>Home</button> </Link>
+            <Link to='/new'><button>Create Post</button> </Link>
+          </div>
+      </div>
+        {element}
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
