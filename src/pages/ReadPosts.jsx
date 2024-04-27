@@ -25,7 +25,7 @@ const ReadPosts = (props) => {
             {
                 posts && posts.length > 0 ?
                 posts.map((post, index) =>
-                    <Card key={index} id={post.id} title={post.title} author={post.author} description={post.description} />
+                    <Card key={index} id={post.id} title={post.title} author={post.author} description={post.description} created_at={posts.created_at}/>
                 ) : (
                     <h2>No posts on feed</h2>
                 )

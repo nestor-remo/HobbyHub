@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import {Link} from 'react-router-dom';
 import { supabase } from '../client';
+import { useParams } from 'react-router-dom';
 import './Card.css';
 
 const Card = (props) => {
@@ -19,11 +20,13 @@ const Card = (props) => {
 
     return (
         <div className='Card'>
-            <h2 className="title">{props.title}</h2>
-            <h3 className="author">{"by " + props.author}</h3>
-            <p className="description">{props.description}</p>
+            <p className="created_at">{props.created_at}</p>
+            <Link className="detail-button" to={'detail/'+props.id}>
+                <h2 className="title">{props.title}</h2>
+            </Link>
+            <h3 className="author">{props.author}</h3>
             <button className='likes-button' onClick={updateLikes}> Likes: {likes} </button>
-            <Link className="edit button" to={'edit/'+props.id}>Edit</Link>
+            <Link className="edit-button" to={'edit/'+props.id}>Edit</Link>
         </div>
     )
 }
