@@ -39,7 +39,7 @@ function App() {
   return (
     <div className='App'>
       <div className='header'>
-          <h1> Welcome to MangaHub! </h1>
+          <h1> Welcome to HobbyHub! </h1>
           <input type="text" id="search" placeholder="Search" name="search" value={search} onChange={(event) => setSearch(event.target.value)} />
           <div>
             <Link to='/'><button>Home</button> </Link>
